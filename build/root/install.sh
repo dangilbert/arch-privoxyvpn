@@ -19,12 +19,15 @@ mv /tmp/scripts-master/shell/arch/docker/*.sh /usr/local/bin/
 ####
 
 # define pacman packages
-pacman_packages="base-devel privoxy"
+pacman_packages="base-devel privoxy cronie"
 
 # install compiled packages using pacman
 if [[ ! -z "${pacman_packages}" ]]; then
 	pacman -S --needed $pacman_packages --noconfirm
 fi
+
+systemctl enable cronie.service
+systemctl start cronie.service
 
 # aur packages
 ####
